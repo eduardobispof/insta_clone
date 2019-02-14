@@ -10,24 +10,24 @@ CREATE TABLE users(
 	user_real_name VARCHAR(45),
 	user_description VARCHAR(255)
 );
-CREATE TABLE amigos(
-	amigo_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	amigo_user_id INT NOT NULL,
-	amigo_amigo_user_id INT NOT NULL,
-	FOREIGN KEY (amigo_user_id) REFERENCES users (user_id),
-	FOREIGN KEY (amigo_amigo_user_id) REFERENCES users (user_id)
+CREATE TABLE friends(
+	friend_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	friend_user_id INT NOT NULL,
+	friend_friend_user_id INT NOT NULL,
+	FOREIGN KEY (friend_user_id) REFERENCES users (user_id),
+	FOREIGN KEY (friend_friend_user_id) REFERENCES users (user_id)
 );
-CREATE TABLE mensagens(
-	mensagem_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	mensagem_origem_user_id INT NOT NULL,
-	mensagem_destino_user_id INT NOT NULL,
-	FOREIGN KEY (mensagem_origem_user_id) REFERENCES users (user_id),
-	FOREIGN KEY (mensagem_destino_user_id) REFERENCES users (user_id)
+CREATE TABLE message(
+	message_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	message_source_user_id INT NOT NULL,
+	message_receiver_user_id INT NOT NULL,
+	FOREIGN KEY (message_source_user_id) REFERENCES users (user_id),
+	FOREIGN KEY (message_receiver_user_id) REFERENCES users (user_id)
 );
 CREATE TABLE fotos(
 	foto_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	foto_user_id INT NOT NULL,
-	foto_diretorio VARCHAR (50) NOT NULL,
+	foto_directory VARCHAR (50) NOT NULL,
 	FOREIGN KEY (foto_user_id) REFERENCES users(user_id)
 );
 CREATE TABLE curtidas(
