@@ -54,13 +54,13 @@ if (isset($_SESSION['user_name'])) {
 		  <div class="form-group">
 
 		      <button type="submit" class="btn btn-primary botao" >Entrar</button>
-		      <a href="cadastro.php"> <button type="submit" class="btn btn-outline-primary botao" id="botao_cadastro">Cadastre-se</button> </a>
+		</form>
+		      <a href="cadastro.php" class="btn btn-outline-primary botao">Cadastre-se </a>
 
 		  </div>
-		</form>
 		<br>
 	</div>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>
 </html>
