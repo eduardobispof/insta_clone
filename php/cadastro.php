@@ -8,8 +8,8 @@ if (isset($_SESSION['user_name'])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-	<script src="../js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" type="text/css"  href="../css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<title>Cadastro</title>
 	<style type="text/css">
 
@@ -48,7 +48,7 @@ if (isset($_SESSION['user_name'])) {
 		      <input type="text" class="form-control" id="nome" name="nome" required placeholder="digite seu nome">
 				</label>
 		    <label for="inputEmail3" class=" col-form-label"><h5>escolha seu usuário:</h5></label>
-		      <input type="text" class="form-control" id="user" name="user" required placeholder="digite seu nome de usuário">
+		      <input type="text" class="form-control" id="user" name="user" required placeholder="escolha seu nome de usuário">
 		      <div class="alert " id="alertErro_usuario" style="display: none;" role="alert">
 						ESTE USUÁRIO JÁ ESTÁ SENDO USADO!
 					</div>
@@ -74,7 +74,7 @@ if (isset($_SESSION['user_name'])) {
 		  <div class="form-group">
 		  	<input type="submit" id="test" class="btn btn-primary botao" value="Cadastrar">
 				<div class="alert alert-success" role="alert" id="success" style="display: none;">
-				  Cadastro feito com sucesso <a href="#" class="alert-link">clique aqui</a> para se cadastrar.
+				  Cadastro feito com sucesso <a href="#" class="alert-link">clique aqui</a> para entrar.
 				</div>
 		      Já tem uma conta? 
 		      <a href="cadastro.php" id="botao_cadastro">Entre</a>
@@ -102,6 +102,8 @@ if (isset($_SESSION['user_name'])) {
 					data: $(this).serialize(),
 					success:function(row){
 						row = JSON.parse(row);
+						console.log(row);
+						/*
 						if (row[0].erro == "user-exists") {
 							document.getElementById('user').className = "form-control is-invalid";
 							document.getElementById('alertErro_usuario').style.display = "block";
@@ -111,11 +113,13 @@ if (isset($_SESSION['user_name'])) {
 						}else{
 							document.getElementById('success').style.display = "block";
 						}
+						*/
+			
+					}
+				});
 			}
 		});
 	}
-
-	testSenha();
 </script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>

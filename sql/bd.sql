@@ -8,7 +8,9 @@ CREATE TABLE users(
 	user_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	user_name VARCHAR(20) NOT NULL,
 	user_real_name VARCHAR(45),
-	user_description VARCHAR(255)
+	user_description VARCHAR(255),
+	user_email VARCHAR(40) NOT NULL,
+	user_password VARCHAR(32)NOT NULL
 );
 CREATE TABLE friends(
 	friend_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
