@@ -6,6 +6,7 @@ if (isset($_SESSION['user_name'])) {
 }
 
 $dados = filter_input_array(INPUT_POST);
+$pw = md5($dados['senha']);
 
 //select para checagem de usuários
 $queryUser = $conn->prepare("SELECT user_name FROM users WHERE user_name = :user");
@@ -25,7 +26,13 @@ if (sizeof($dataUser) > 0) {
 } elseif (sizeof($dataEmail) > 0) {
 	$answer['erro'] = "email-exists";
 }else{
-
+	$answer['erro'] = "no-erros";
+	$queryInsert = $conn->prepare("INSERT INTO users(user_name, user_real_name, user_email, user_password) VALUES (:name, :real_name, :email, :password)");
+	$queryInsert->bindParam(':name', $dados['user']);
+	$queryInsert->bindParam(':real_name', $dados['nome']);
+	$queryInsert->bindParam(':email', $dados['email']);
+	$queryInsert->bindParam(':password', $pw);
+	$queryInsert->execute();
 }
 echo json_encode($answer);
 ?>

@@ -54,7 +54,7 @@ if (isset($_SESSION['user_name'])) {
 					</div>
 				</label>
 		    <label for="inputEmail3" class=" col-form-label"><h5>digite seu e-mail:</h5></label>
-		      <input type="email" class="form-control" id="" name="email" required placeholder="digite seu e-mail">
+		      <input type="email" class="form-control" id="email" name="email" required placeholder="digite seu e-mail">
 		      <div class="alert " id="alertErro_email" style="display: none;" role="alert">
 						ESTE E-MAIL JÁ ESTÁ SENDO USADO POR OUTRA CONTA!
 					</div>
@@ -74,10 +74,10 @@ if (isset($_SESSION['user_name'])) {
 		  <div class="form-group">
 		  	<input type="submit" id="test" class="btn btn-primary botao" value="Cadastrar">
 				<div class="alert alert-success" role="alert" id="success" style="display: none;">
-				  Cadastro feito com sucesso <a href="#" class="alert-link">clique aqui</a> para entrar.
+				  Cadastro feito com sucesso <a href="login.php" class="alert-link">clique aqui</a> para entrar.
 				</div>
 		      Já tem uma conta? 
-		      <a href="cadastro.php" id="botao_cadastro">Entre</a>
+		      <a href="cadastro.php" id="botao_cadastro">Entrar</a>
 		  </div>
 		</form>
 		<br>
@@ -93,6 +93,15 @@ if (isset($_SESSION['user_name'])) {
 				document.getElementById('pw1').className = "form-control is-invalid";
 				document.getElementById('pw2').className = "form-control is-invalid";
 				document.getElementById('alertErro_senha').style.display = "block";
+
+				document.getElementById('email').className = "form-control";
+				document.getElementById('alertErro_email').style.display = "none";
+
+				document.getElementById('user').className = "form-control";
+				document.getElementById('alertErro_usuario').style.display = "none";
+
+				document.getElementById('success').style.display = "none";
+
 			} else {
 				e.preventDefault();
 				$.ajax({
@@ -101,25 +110,40 @@ if (isset($_SESSION['user_name'])) {
 					url: $(this).attr('action'),
 					data: $(this).serialize(),
 					success:function(row){
-						row = JSON.parse(row);
-						console.log(row);
-						/*
-						if (row[0].erro == "user-exists") {
+						// row = JSON.parse(row);
+						console.log(row.erro);
+						
+						if (row.erro == "user-exists") {
 							document.getElementById('user').className = "form-control is-invalid";
 							document.getElementById('alertErro_usuario').style.display = "block";
-						}else if (row[0].erro == "email-exists") {
-							document.getElementById('user').className = "form-control is-invalid";
+
+							document.getElementById('email').className = "form-control";
+							document.getElementById('alertErro_email').style.display = "none";
+
+						}else if (row.erro == "email-exists") {
+							document.getElementById('email').className = "form-control is-invalid";
 							document.getElementById('alertErro_email').style.display = "block";
+
+							document.getElementById('user').className = "form-control";
+							document.getElementById('alertErro_usuario').style.display = "none";
+
 						}else{
 							document.getElementById('success').style.display = "block";
+							$("#form-cadastro").trigger("reset");
+
+							document.getElementById('email').className = "form-control";
+							document.getElementById('alertErro_email').style.display = "none";
+
+							document.getElementById('user').className = "form-control";
+							document.getElementById('alertErro_usuario').style.display = "none";
 						}
-						*/
-			
 					}
 				});
 			}
 		});
 	}
+
+	testSenha();
 </script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>
