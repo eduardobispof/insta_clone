@@ -9,7 +9,7 @@ if (isset($_SESSION['user_name'])) {
 <html>
 <head>
 	<link rel="stylesheet" type="text/css"  href="../css/bootstrap.min.css">
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="../js/jquery-3.3.1.min.js"></script>
 	<title>Cadastro</title>
 	<style type="text/css">
 
@@ -77,7 +77,7 @@ if (isset($_SESSION['user_name'])) {
 				  Cadastro feito com sucesso <a href="login.php" class="alert-link">clique aqui</a> para entrar.
 				</div>
 		      Já tem uma conta? 
-		      <a href="cadastro.php" id="botao_cadastro">Entrar</a>
+		      <a href="login.php" id="botao_cadastro">Entrar</a>
 		  </div>
 		</form>
 		<br>
@@ -136,6 +136,7 @@ if (isset($_SESSION['user_name'])) {
 
 							document.getElementById('user').className = "form-control";
 							document.getElementById('alertErro_usuario').style.display = "none";
+							document.getElementById('alertErro_senha').style.display = "none";
 						}
 					}
 				});
