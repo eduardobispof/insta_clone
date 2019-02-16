@@ -1,7 +1,7 @@
 <?php 
-include 'conn.php';
-session_start();
-if (isset($_SESSION['user_name'])) {
+include 'classes/User.php';
+$user = new User;
+if (isset($user->user_name)) {
 	header('location: index.php');
 }
  ?>
@@ -90,6 +90,8 @@ if (isset($_SESSION['user_name'])) {
 					}else if (row.content == "erro-password") {
 						document.getElementById('alertErro_senha').style.display = "block";
 						document.getElementById('alertErro_usuario').style.display = "none";
+					} else {
+						 location.assign("index.php");
 					}
 				}
 			});

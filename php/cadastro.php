@@ -1,7 +1,7 @@
 <?php 
-include 'conn.php';
-session_start();
-if (isset($_SESSION['user_name'])) {
+include 'classes/User.php';
+$user = new User;
+if (isset($user->user_name)) {
 	header('location: index.php');
 }
  ?>
@@ -111,16 +111,16 @@ if (isset($_SESSION['user_name'])) {
 					data: $(this).serialize(),
 					success:function(row){
 						// row = JSON.parse(row);
-						console.log(row.erro);
+						console.log(row.content);
 						
-						if (row.erro == "user-exists") {
+						if (row.content == "user-exists") {
 							document.getElementById('user').className = "form-control is-invalid";
 							document.getElementById('alertErro_usuario').style.display = "block";
 
 							document.getElementById('email').className = "form-control";
 							document.getElementById('alertErro_email').style.display = "none";
 
-						}else if (row.erro == "email-exists") {
+						}else if (row.content == "email-exists") {
 							document.getElementById('email').className = "form-control is-invalid";
 							document.getElementById('alertErro_email').style.display = "block";
 
