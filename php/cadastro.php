@@ -1,10 +1,3 @@
-<?php 
-include 'classes/User.php';
-$user = new User;
-if (isset($user->user_name)) {
-	header('location: index.php');
-}
- ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,6 +94,7 @@ if (isset($user->user_name)) {
 				document.getElementById('alertErro_usuario').style.display = "none";
 
 				document.getElementById('success').style.display = "none";
+				document.getElementById('success').style.display = "none";
 
 			} else {
 				e.preventDefault();
@@ -117,6 +111,7 @@ if (isset($user->user_name)) {
 							document.getElementById('user').className = "form-control is-invalid";
 							document.getElementById('alertErro_usuario').style.display = "block";
 
+							document.getElementById('success').style.display = "none";
 							document.getElementById('email').className = "form-control";
 							document.getElementById('alertErro_email').style.display = "none";
 
@@ -124,6 +119,7 @@ if (isset($user->user_name)) {
 							document.getElementById('email').className = "form-control is-invalid";
 							document.getElementById('alertErro_email').style.display = "block";
 
+							document.getElementById('success').style.display = "none";
 							document.getElementById('user').className = "form-control";
 							document.getElementById('alertErro_usuario').style.display = "none";
 

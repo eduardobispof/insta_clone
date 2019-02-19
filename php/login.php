@@ -1,7 +1,6 @@
 <?php 
-include 'classes/User.php';
-$user = new User;
-if (isset($user->user_name)) {
+session_start();
+if (isset($_SESSION['user_name'])) {
 	header('location: index.php');
 }
  ?>
@@ -72,34 +71,7 @@ if (isset($user->user_name)) {
 		  </div>
 		<br>
 	</div>
-<script>
-	function testUser(){
-		$("#form-login").on("submit", function(e){
-			e.preventDefault();
-			$.ajax({
-				type: "POST",
-				dataType: "Json",
-				url: $(this).attr('action'),
-				data: $(this).serialize(),
-				success: function(row){
-					console.log(row.content);
 
-					if (row.content == "erro-user") {
-						document.getElementById('alertErro_usuario').style.display = "block";
-						document.getElementById('alertErro_senha').style.display = "none";
-					}else if (row.content == "erro-password") {
-						document.getElementById('alertErro_senha').style.display = "block";
-						document.getElementById('alertErro_usuario').style.display = "none";
-					} else {
-						 location.assign("index.php");
-					}
-				}
-			});
-		});
-	}
-
-	testUser();
-</script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>
 </html>

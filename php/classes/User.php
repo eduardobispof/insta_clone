@@ -2,25 +2,10 @@
 /**
  * 
  */
-class User{
+include 'Model.php';
+class User extends Model{
 	
-	public $conn;
-
-	function conexao(){
-
-		global $conn;
-		$dbuser = "root";
-		$dbpw = "";
-		try {
-		  $conn = new PDO('mysql:host=localhost;dbname=instatop', $dbuser, $dbpw);
-		  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		} catch(PDOException $e) {
-		  echo 'Erro: ' . $e->getMessage();
-		}
-	}
-
 	function login($user, $pw){
-		session_start();
 		global $conn;
 
 		$user = addslashes($user);
@@ -45,7 +30,15 @@ class User{
 		}elseif (sizeof($valPw) <= 0) {
 			$answer['content'] = "erro-password";
 		}else{
-			$_SESSION['user_name'] = $user;
+			$queryLogin = $conn->prepare("SELECT user_name, user_real_name, user_email FROM users WHERE user_name = :user AND user_password = :pw");
+			$queryLogin->bindParam(':user', $user);
+			$queryLogin->bindParam(':pw', $pw);
+			$queryLogin->execute();
+			$dataLogin = $queryLogin->fetchALL(PDO::FETCH_ASSOC);
+
+			$_SESSION['user_name'] = $dataLogin[0]['user_name'];
+			$_SESSION['real_name'] = $dataLogin[0]['user_real_name'];
+			$_SESSION['email'] = $dataLogin[0]['user_email'];
 		}
 
 		echo json_encode($answer);
