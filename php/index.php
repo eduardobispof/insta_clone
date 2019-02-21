@@ -41,6 +41,18 @@ if (!isset($_SESSION['user_name'])) {
 	#card{
 		background-color: #f5f5f5;
 	}
+	/* Esconde o input */
+
+
+	/* Aparência que terá o seletor de arquivo */
+	label {
+	  background-color: #3498db;
+	  border-radius: 5px;
+	  color: #fff;
+	  cursor: pointer;
+	  margin: 10px;
+	  padding: 6px 20px
+	}
 </style>
 <body>
 <div class="container">
@@ -60,17 +72,27 @@ if (!isset($_SESSION['user_name'])) {
 
 	    <form class="form-inline my-2 my-lg-0" id="search">
 	      <input class="form-control mr-sm-2" type="search" placeholder="encontrar" aria-label="Search">
-	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">procurar</button>
+	      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">procurar</button>
 	    </form>
-	  	<a class="navbar-brand" href="#" style="padding-left: 100px;"> sair </a>
+	  	<a class="navbar-brand" href="logOut.php" style="padding-left: 100px;"> sair </a>
 	    </ul>
 	  </div>
 	</nav>
-
+	<br>
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			<form>
+			  <div class="form-group">
+					<label class="btn btn-info">postar imagens &#187;</label>
+					<input id='selecao-arquivo' name="imgs" type=file multiple>
+			  </div>
+			</form>
+		</div>
+	</div>
+	<br>
 	<div class="row">
 		<div class="col-md-6 offset-md-3">
 		<div class="row">
-			<div class="col-md-10 offset-md-1">
 				<div class="card">
 				  <img src="../images/cachorro.jpg" class="card-img-top" alt="...">
 				  <div class="card-body">
@@ -79,20 +101,9 @@ if (!isset($_SESSION['user_name'])) {
 				    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 				  </div>
 				</div>
-			</div>
 		</div>
 		</div>
 		</div>
-	
-	<!-- <div class="card mb-3 card-feed">
-	  <img src="../images/cachorro.jpg" class="card-img-top" alt="...">
-	  <div class="card-body">
-	    <h5 class="card-title">Card title</h5>
-	    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-	    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-	  </div>
-	</div> -->
-
 </div>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>
