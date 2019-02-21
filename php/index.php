@@ -41,18 +41,6 @@ if (!isset($_SESSION['user_name'])) {
 	#card{
 		background-color: #f5f5f5;
 	}
-	/* Esconde o input */
-
-
-	/* Aparência que terá o seletor de arquivo */
-	label {
-	  background-color: #3498db;
-	  border-radius: 5px;
-	  color: #fff;
-	  cursor: pointer;
-	  margin: 10px;
-	  padding: 6px 20px
-	}
 </style>
 <body>
 <div class="container">
@@ -81,10 +69,14 @@ if (!isset($_SESSION['user_name'])) {
 	<br>
 	<div class="row">
 		<div class="col-md-6 offset-md-3">
-			<form>
+			<form method="POST" action="addImage.php" enctype="multipart/form-data" onsubmit="Checkfiles()">
 			  <div class="form-group">
-					<label class="btn btn-info">postar imagens &#187;</label>
-					<input id='selecao-arquivo' name="imgs" type=file multiple>
+			  <br>
+					<input id='img' name="imgs" type=file multiple required>
+						<br>
+						<input class="form-control" type="text" name="legenda" accept="image/png, image/jpeg" placeholder="adicione uma legenda">
+						<br>
+					<button type="submit" class="btn btn-info">postar imagens</button>
 			  </div>
 			</form>
 		</div>
@@ -94,7 +86,7 @@ if (!isset($_SESSION['user_name'])) {
 		<div class="col-md-6 offset-md-3">
 		<div class="row">
 				<div class="card">
-				  <img src="../images/cachorro.jpg" class="card-img-top" alt="...">
+				  <img src="../images/cachorro.jpg" class="card-img-top img-thumbnail" alt="...">
 				  <div class="card-body">
 				    <h5 class="card-title">Card title</h5>
 				    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -105,6 +97,7 @@ if (!isset($_SESSION['user_name'])) {
 		</div>
 		</div>
 </div>
+
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>
 </html>

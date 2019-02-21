@@ -1,7 +1,5 @@
 <?php 
-/**
- * 
- */
+
 include 'Model.php';
 class User extends Model{
 	
@@ -30,12 +28,13 @@ class User extends Model{
 		}elseif (sizeof($valPw) <= 0) {
 			$answer['content'] = "erro-password";
 		}else{
-			$queryLogin = $conn->prepare("SELECT user_name, user_real_name, user_email FROM users WHERE user_name = :user AND user_password = :pw");
+			$queryLogin = $conn->prepare("SELECT user_id, user_name, user_real_name, user_email FROM users WHERE user_name = :user AND user_password = :pw");
 			$queryLogin->bindParam(':user', $user);
 			$queryLogin->bindParam(':pw', $pw);
 			$queryLogin->execute();
 			$dataLogin = $queryLogin->fetchALL(PDO::FETCH_ASSOC);
 
+			$_SESSION['user_id'] = $dataLogin[0]['user_id'];
 			$_SESSION['user_name'] = $dataLogin[0]['user_name'];
 			$_SESSION['real_name'] = $dataLogin[0]['user_real_name'];
 			$_SESSION['email'] = $dataLogin[0]['user_email'];
@@ -78,6 +77,7 @@ class User extends Model{
 			$queryInsert->bindParam(':email', $email);
 			$queryInsert->bindParam(':password', $pw);
 			$queryInsert->execute();
+			mkdir('../images/'.$user_name);
 		}
 		// echo json_encode($answer);
 		echo json_encode($answer);
