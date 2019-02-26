@@ -2,6 +2,12 @@ DROP DATABASE IF EXISTS instatop;
 
 CREATE DATABASE instatop;
 
+DROP USER  IF EXISTS 'insta'@'localhost';
+
+CREATE USER 'insta'@'localhost' IDENTIFIED BY 'edu';
+
+GRANT DELETE, UPDATE, SELECT, INSERT ON instatop . * TO 'insta'@'localhost'; 
+
 USE instatop;
 
 CREATE TABLE users(

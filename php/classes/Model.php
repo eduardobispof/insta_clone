@@ -5,8 +5,8 @@ class Model{
 	function conexao(){
 
 		global $conn;
-		$dbuser = "root";
-		$dbpw = "ifpe";
+		$dbuser = "insta";
+		$dbpw = "edu";
 		try {
 		  $conn = new PDO('mysql:host=localhost;dbname=instatop', $dbuser, $dbpw);
 		  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

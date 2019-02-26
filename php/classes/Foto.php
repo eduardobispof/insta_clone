@@ -5,15 +5,30 @@ include 'Model.php';
 class Foto extends Model{
 	
 	function upFoto($foto, $legenda, $user_id){
-		$url = '../imagens/'.$_SESSION['user_name'];
-		$name = md5(0, 999);
-		$arq[] = $foto;
 
-		$ext = explode("/", $_FILES['imgs']['type']);
+		//define o destino do arquivo
 
-		$queryImg = $conn->prepare(" INSERT INTO fotos (foto_directory, foto_user_id) VALUES (:foto, :user)");
-		$queryImg->bindParam(':foto', )
+		//recebe a extensao do arquivo
+		$ext = explode("/", $foto['imgs']['type']);
+
+		//define o nome do arquivo
+		$hash = 'test';
+
+		// une o nome do arquivo com extensao
+		$hash = $hash . "." . $ext[1];
+
+		$caminho = '../../images/' . $_SESSION['user_name'] . '/' . $hash;
+		// var_dump($hash);
+
+		// var_dump($foto);
+
+		if ($ext[1] == "png" || $ext[1] == "jpeg" || $ext[1] == "jpg") {
+			move_uploaded_file($foto['imgs']['tmp_name'], $hash);
+		} else {
+			echo "n é imagem";
+		}
 
 	}
+
 }
  ?>

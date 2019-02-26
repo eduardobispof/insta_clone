@@ -1,22 +1,14 @@
 <?php 
-// include 'classes/Foto.php';
+include 'classes/Foto.php';
 session_start();
 
-// $foto = new Foto;
-
-$dados  = filter_input_array(INPUT_POST);
-
-
-$ext = explode("/", $_FILES['imgs']['type']);
-
-var_dump($ext);
-
+$foto = new Foto;
+// recebe o id do usuario logado
 $user_id = addslashes($_SESSION['user_id']);
 
-echo $ext;
+// recebe dos dados do forumlá de postagem
+$dados  = filter_input_array(INPUT_POST);
 
-
-// $foto -> conexao();
-
-// $foto -> uoFoto($_FILES, $dados['legenda'], )
+$foto -> conexao();
+$foto -> upFoto($_FILES, $dados['legenda'], $user_id);
  ?>
